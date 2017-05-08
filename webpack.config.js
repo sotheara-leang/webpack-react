@@ -1,14 +1,20 @@
-const path = require('path');  
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-module.exports = {  
+module.exports = {
   entry: [
     path.join(__dirname, 'src/index.jsx')
   ],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'app.js'
+  },
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+    port: 9000,
+    open: true
   },
   module: {
     rules: [

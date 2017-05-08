@@ -3,12 +3,12 @@ import React from 'react';
 
 import './App.scss';
 
-function App() {  
+function App() {
   return (
     <div className="app">
-      	<h3>App Component</h3>
+      	<h3>App Component Demo</h3>
     </div>
   );
 }
 
-export default App;  
+export default App;

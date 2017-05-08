@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack -d",
-    "prod": "webpack -p"
+    "build:dev": "webpack -d",
+    "build:prod": "webpack -p",
+    "serve": "webpack-dev-server"
   },
   "author": "",
   "license": "ISC",
