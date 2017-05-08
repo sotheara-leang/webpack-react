@@ -1,5 +1,6 @@
 const path = require('path');  
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {  
   entry: [
@@ -9,24 +10,33 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename: 'app.js'
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-        filename: 'index.html',
-        template: './src/index.html'
-    })
-  ],
   module: {
     rules: [
       {
         test: /.jsx?$/,
         exclude: /node_modules/,
         include: path.join(__dirname, 'src'),
-       	loader: "babel-loader"
+       	loader: 'babel-loader'
       },
       {
-        test: /\.sass$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
-      },
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader'],
+          publicPath: "/dist"
+        })
+      }
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: './src/index.html'
+    }),
+    new ExtractTextPlugin({
+      filename: 'app.css',
+      disable: false,
+      allChunks: true
+    })
+  ]
 };
