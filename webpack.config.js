@@ -1,4 +1,5 @@
 const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
@@ -35,6 +36,11 @@ module.exports = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(['dist/*'], {
+      root: path.join(__dirname),
+      verbose: true,
+      dry: false
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './src/index.html'
