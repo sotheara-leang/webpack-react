@@ -1,11 +1,12 @@
 const path = require('path');
+const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
 
-const bootstrapEntryPoints = require('./bootstrap/bootstrap.js');
-
 const root = path.resolve(__dirname, '../');
+
+const bootstrapEntryPoints = require('./bootstrap/bootstrap.js');
 
 const isProdMode = process.env.ENV === 'prod';
 
@@ -16,7 +17,7 @@ module.exports = {
   },
   output: {
     path: path.join(root, 'dist'),
-    filename: 'scripts/[name].js'
+    filename: 'scripts/[name].[chunkhash].js'
   },
   devServer: {
     contentBase: path.join(root, "dist"),
@@ -79,7 +80,17 @@ module.exports = {
       filename: 'styles/[name].css',
       disable: false,
       allChunks: true
-    })
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+       name: 'vendor',
+       minChunks: function (module) {
+          return module.context && module.context.indexOf('node_modules') !== -1;
+       }
+     }),
+     //CommonChunksPlugin will now extract all the common modules from vendor and main bundles
+     new webpack.optimize.CommonsChunkPlugin({
+         name: 'manifest' //But since there are no more common modules between them we end up with just the runtime code included in the manifest file
+     })
   ],
   resolve: {
     alias: {
