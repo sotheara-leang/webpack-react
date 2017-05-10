@@ -9,7 +9,7 @@ const bootstraprcCustomLocation = getBootstraprcCustomLocation();
 let defaultBootstraprcFileExists;
 
 try {
-  fs.statSync('./config/.bootstraprc');
+  fs.statSync('./config/bootstrap/.bootstraprc');
   defaultBootstraprcFileExists = true;
 } catch (e) {
   defaultBootstraprcFileExists = false;

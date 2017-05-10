@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "ENV=dev webpack -d",
-    "build:prod": "ENV=prod webpack -p",
+    "build": "ENV=dev webpack --config 'config/webpack.js' -d",
+    "build:prod": "ENV=prod webpack --config 'config/webpack.js' -p",
     "serve": "webpack-dev-server"
   },
   "author": "",

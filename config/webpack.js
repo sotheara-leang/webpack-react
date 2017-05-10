@@ -3,21 +3,23 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
 
-const bootstrapEntryPoints = require('./config/bootstrap.config.js');
+const bootstrapEntryPoints = require('./bootstrap/bootstrap.js');
+
+const root = path.resolve(__dirname, '../');
 
 const isProdMode = process.env.ENV === 'prod';
 
 module.exports = {
   entry: {
-    app: path.join(__dirname, 'src/index.jsx'),
+    app: path.join(root, 'src/index.jsx'),
     bootstrap: isProdMode ? bootstrapEntryPoints.prod : bootstrapEntryPoints.dev
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(root, 'dist'),
     filename: 'scripts/[name].js'
   },
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(root, "dist"),
     compress: true,
     port: 9000,
     open: false
@@ -31,8 +33,8 @@ module.exports = {
       {
         test: /.jsx?$/,
         exclude: /node_modules/,
-        include: path.join(__dirname, 'src'),
-       	loader: 'babel-loader'
+        include: path.join(root, 'src'),
+       	loader: 'babel-loader?babelrc=false&extends=' + path.join(__dirname, '/.babelrc')
       },
       {
         test: /\.scss$/,
@@ -65,7 +67,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist/*'], {
-      root: path.join(__dirname),
+      root: path.resolve(root),
       verbose: true,
       dry: false
     }),
@@ -81,10 +83,10 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      Root: path.resolve(__dirname, 'src/'),
-      Components: path.resolve(__dirname, 'src/components/'),
-      Images: path.resolve(__dirname, 'src/images/'),
-      Styles: path.resolve(__dirname, 'src/styles/')
+      Root: path.resolve(root, 'src/'),
+      Components: path.resolve(root, 'src/components/'),
+      Images: path.resolve(root, 'src/images/'),
+      Styles: path.resolve(root, 'src/styles/')
     }
   }
 };
