@@ -20,6 +20,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.html$/,
+        loader: 'html-loader'
+      },
+      {
         test: /.jsx?$/,
         exclude: /node_modules/,
         include: path.join(__dirname, 'src'),
@@ -32,6 +36,13 @@ module.exports = {
           use: ['css-loader', 'sass-loader'],
           publicPath: "/dist"
         })
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: [
+            'file-loader?name=images/[name].[ext]',
+            'image-webpack-loader'
+        ]
       }
     ]
   },
