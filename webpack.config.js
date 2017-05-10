@@ -15,7 +15,7 @@ module.exports = {
     contentBase: path.join(__dirname, "dist"),
     compress: true,
     port: 9000,
-    open: true
+    open: false
   },
   module: {
     rules: [
@@ -50,5 +50,13 @@ module.exports = {
       disable: false,
       allChunks: true
     })
-  ]
+  ],
+  resolve: {
+    alias: {
+      Root: path.resolve(__dirname, 'src/'),
+      Components: path.resolve(__dirname, 'src/components/'),
+      Images: path.resolve(__dirname, 'src/images/'),
+      Styles: path.resolve(__dirname, 'src/styles/')
+    }
+  }
 };
