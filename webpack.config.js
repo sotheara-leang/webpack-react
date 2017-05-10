@@ -1,7 +1,7 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: [
@@ -9,7 +9,7 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'app.js'
+    filename: 'scripts/[name].js'
   },
   devServer: {
     contentBase: path.join(__dirname, "dist"),
@@ -31,7 +31,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
+        use: ExtractTextWebpackPlugin.extract({
           fallback: 'style-loader',
           use: ['css-loader', 'sass-loader'],
           publicPath: "/dist"
@@ -56,8 +56,8 @@ module.exports = {
       filename: 'index.html',
       template: './src/index.html'
     }),
-    new ExtractTextPlugin({
-      filename: 'app.css',
+    new ExtractTextWebpackPlugin({
+      filename: 'styles/[name].css',
       disable: false,
       allChunks: true
     })
