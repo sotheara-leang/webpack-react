@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "ENV=dev webpack --config 'config/webpack.js' -d",
+    "build": "webpack --config 'config/webpack.js' -d",
     "build:prod": "ENV=prod webpack --config 'config/webpack.js' -p",
-    "serve": "webpack-dev-server"
+    "serve": "webpack-dev-server --config 'config/webpack.js'"
   },
   "author": "",
   "license": "ISC",

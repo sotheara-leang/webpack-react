@@ -1,4 +1,7 @@
 const fs = require('fs');
+const path = require('path');
+
+const root = path.resolve(__dirname, '../../');
 
 function getBootstraprcCustomLocation() {
   return process.env.BOOTSTRAPRC_LOCATION;
@@ -26,7 +29,7 @@ if (!bootstraprcCustomLocation && !defaultBootstraprcFileExists) {
 let bootstrapDevEntryPoint;
 if (bootstraprcCustomLocation) {
   bootstrapDevEntryPoint = 'bootstrap-loader/lib/bootstrap.loader?' +
-    `configFilePath=${__dirname}/${bootstraprcCustomLocation}` +
+    `configFilePath=${root}/${bootstraprcCustomLocation}` +
     '!bootstrap-loader/no-op.js';
 } else {
   bootstrapDevEntryPoint = 'bootstrap-loader';
@@ -35,7 +38,7 @@ if (bootstraprcCustomLocation) {
 let bootstrapProdEntryPoint;
 if (bootstraprcCustomLocation) {
   bootstrapProdEntryPoint = 'bootstrap-loader/lib/bootstrap.loader?extractStyles' +
-    `&configFilePath=${__dirname}/${bootstraprcCustomLocation}` +
+    `&configFilePath=${root}/${bootstraprcCustomLocation}` +
     '!bootstrap-loader/no-op.js';
 } else {
   bootstrapProdEntryPoint = 'bootstrap-loader/extractStyles';
