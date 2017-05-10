@@ -3,10 +3,15 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
 
+const bootstrapEntryPoints = require('./config/bootstrap.config.js');
+
+const isProdMode = process.env.ENV === 'prod';
+
 module.exports = {
-  entry: [
-    path.join(__dirname, 'src/index.jsx')
-  ],
+  entry: {
+    app: path.join(__dirname, 'src/index.jsx'),
+    bootstrap: isProdMode ? bootstrapEntryPoints.prod : bootstrapEntryPoints.dev
+  },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'scripts/[name].js'
@@ -39,10 +44,22 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        loaders: [
+        loader: [
             'file-loader?name=images/[name].[ext]',
             'image-webpack-loader'
         ]
+      },
+      {
+        test: /\.(woff2?|svg)$/,
+        use: 'url-loader?limit=10000&name=fonts/[name].[ext]'
+      },
+      {
+        test: /\.(ttf|eot)$/,
+        use: 'file-loader?name=fonts/[name].[ext]'
+
+      },
+      { test: /bootstrap-sass\/assets\/javascripts\//,
+        use: 'imports-loader?jQuery=jquery'
       }
     ]
   },
