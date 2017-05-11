@@ -1,8 +1,11 @@
 const path = require('path');
+const glob = require('glob');
 const webpack = require('webpack');
+
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
+const PurifyCSSPlugin = require('purifycss-webpack');
 
 const root = path.resolve(__dirname, '../');
 
@@ -77,9 +80,12 @@ module.exports = {
       template: './src/index.html'
     }),
     new ExtractTextWebpackPlugin({
-      filename: 'styles/[name].css',
+      filename: 'styles/[name].[contenthash].css',
       disable: false,
       allChunks: true
+    }),
+    new PurifyCSSPlugin({
+      paths: glob.sync(path.join(root, 'src/*.html'))
     }),
     new webpack.optimize.CommonsChunkPlugin({
        name: 'vendor',
@@ -94,10 +100,10 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      Root: path.resolve(root, 'src/'),
-      Components: path.resolve(root, 'src/components/'),
-      Images: path.resolve(root, 'src/images/'),
-      Styles: path.resolve(root, 'src/styles/')
+      Root: path.join(root, 'src/'),
+      Components: path.join(root, 'src/components/'),
+      Images: path.join(root, 'src/images/'),
+      Styles: path.join(root, 'src/styles/')
     }
   }
 };
