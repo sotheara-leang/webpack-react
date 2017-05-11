@@ -32,10 +32,11 @@ module.exports = {
     rules: [
       {
         test: /\.html$/,
+        exclude: path.join(root, 'src/views'),
         use: 'html-loader'
       },
       {
-        test: /.jsx?$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         include: path.join(root, 'src'),
        	loader: 'babel-loader?babelrc=false&extends=' + path.join(__dirname, '/.babelrc')
@@ -66,7 +67,7 @@ module.exports = {
       },
       {
         test: /bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/,
-        loader: 'imports-loader?jQuery=jquery'
+        use: 'imports-loader?jQuery=jquery'
       }
     ]
   },
@@ -105,8 +106,7 @@ module.exports = {
       Root: path.join(root, 'src/'),
       Components: path.join(root, 'src/components/'),
       Images: path.join(root, 'src/images/'),
-      Styles: path.join(root, 'src/styles/'),
-      Views: path.join(root, 'src/views/')
+      Styles: path.join(root, 'src/styles/')
     }
   }
 };

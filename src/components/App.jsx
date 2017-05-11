@@ -1,6 +1,5 @@
 
 import React from 'react';
-
 import 'Styles/common.scss';
 
 function App() {
