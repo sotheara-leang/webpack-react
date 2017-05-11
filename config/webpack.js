@@ -85,7 +85,8 @@ module.exports = {
       allChunks: true
     }),
     new PurifyCSSPlugin({
-      paths: glob.sync(path.join(root, 'src/*.html'))
+      paths: glob.sync(path.join(root, 'src/*.html')),
+      minimize: true
     }),
     new webpack.optimize.CommonsChunkPlugin({
        name: 'vendor',
