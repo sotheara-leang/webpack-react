@@ -32,7 +32,7 @@ module.exports = {
     rules: [
       {
         test: /\.html$/,
-        loader: 'html-loader'
+        use: 'html-loader'
       },
       {
         test: /.jsx?$/,
@@ -64,8 +64,9 @@ module.exports = {
         use: 'file-loader?name=fonts/[name].[ext]'
 
       },
-      { test: /bootstrap-sass\/assets\/javascripts\//,
-        use: 'imports-loader?jQuery=jquery'
+      {
+        test: /bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/,
+        loader: 'imports-loader?jQuery=jquery'
       }
     ]
   },
@@ -104,7 +105,8 @@ module.exports = {
       Root: path.join(root, 'src/'),
       Components: path.join(root, 'src/components/'),
       Images: path.join(root, 'src/images/'),
-      Styles: path.join(root, 'src/styles/')
+      Styles: path.join(root, 'src/styles/'),
+      Views: path.join(root, 'src/views/')
     }
   }
 };
