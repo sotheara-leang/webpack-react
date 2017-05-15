@@ -11,34 +11,25 @@ const root = path.resolve(__dirname, '../');
 
 const bootstrapEntryPoints = require('./bootstrap/bootstrap.js');
 
-const isProdMode = process.env.ENV === 'prod';
-
 module.exports = {
   entry: {
-    app: path.join(root, 'src/index.jsx'),
-    bootstrap: isProdMode ? bootstrapEntryPoints.prod : bootstrapEntryPoints.dev
+    app: path.join(root, 'src/scripts/AppBootstrap.jsx'),
+    bootstrap: bootstrapEntryPoints.prod
   },
   output: {
     path: path.join(root, 'dist'),
     filename: 'scripts/[name].[chunkhash].js'
   },
-  devServer: {
-    contentBase: path.join(root, "dist"),
-    compress: true,
-    port: 9000,
-    open: false
-  },
   module: {
     rules: [
       {
         test: /\.html$/,
-        exclude: path.join(root, 'src/views'),
         use: 'html-loader'
       },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        include: path.join(root, 'src'),
+        include: path.join(root, 'src/scripts/'),
        	loader: 'babel-loader?babelrc=false&extends=' + path.join(__dirname, '/.babelrc')
       },
       {
@@ -106,6 +97,9 @@ module.exports = {
     alias: {
       Root: path.join(root, 'src/'),
       Components: path.join(root, 'src/components/'),
+      Models: path.join(root, 'src/scripts/models/'),
+      Services: path.join(root, 'src/scripts/services/'),
+      Utils: path.join(root, 'src/scripts/utils/'),
       Images: path.join(root, 'src/images/'),
       Styles: path.join(root, 'src/styles/')
     }
