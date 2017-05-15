@@ -6,15 +6,15 @@ import {
   Table,
 } from 'react-bootstrap';
 
-const UserListComponent = () =>  (
+const RoleListComponent = () =>  (
   <Grid>
     <Row className="show-grid">
       <Col xs={12}>
-        <h3 style={{marginBottom: 30}}>User Management</h3>
+        <h3 style={{marginBottom: 30}}>Role Management</h3>
       </Col>
       <Col xs={12}>
         <Well bsSize="sm">
-           <Button bsStyle="primary">New user</Button>
+           <Button bsStyle="primary">New role</Button>
         </Well>
       </Col>
       <Col xs={12}>
@@ -22,28 +22,20 @@ const UserListComponent = () =>  (
           <thead>
             <tr>
               <th>#</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Username</th>
+              <th>Name</th>
+              <th>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+              <td>Admin</td>
+              <td>Admin User</td>
             </tr>
             <tr>
               <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td colSpan="2">Larry the Bird</td>
-              <td>@twitter</td>
+              <td>Super Admin</td>
+              <td>Super Admin User</td>
             </tr>
           </tbody>
         </Table>
@@ -52,4 +44,4 @@ const UserListComponent = () =>  (
   </Grid>
 );
 
-export default UserListComponent;
+export default RoleListComponent;
