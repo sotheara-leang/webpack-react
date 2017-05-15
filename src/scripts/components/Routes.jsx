@@ -9,6 +9,7 @@ const Routes = [
     routes: [
       {
         path: '/',
+        exact: true,
         component: HomeComponent
       },
       {

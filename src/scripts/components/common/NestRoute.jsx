@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom';
 function NestRoute(route) {
   return (
     <div>
-      <Route path={route.path} render={props => (
+      <Route exact={route.exact} strict={route.strict} path={route.path} render={props => (
           <route.component {...props} routes={route.routes} />
       )}/>
     </div>
