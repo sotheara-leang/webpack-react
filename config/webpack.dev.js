@@ -23,7 +23,8 @@ module.exports = {
     contentBase: path.join(root, "dist"),
     compress: true,
     port: 9000,
-    open: false
+    open: false,
+    historyApiFallback: true
   },
   devtool: 'source-map',
   module: {
@@ -65,6 +66,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.LoaderOptionsPlugin({
+      debug: true
+    }),
     new CleanWebpackPlugin(['dist/*'], {
       root: path.resolve(root),
       verbose: true,
