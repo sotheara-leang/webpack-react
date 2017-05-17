@@ -1,23 +1,22 @@
 import React from 'react';
+import { LinkContainer } from 'react-router-bootstrap';
 import {
   Grid, Row, Col,
   Well,
   Button,
   Table,
+  PageHeader
 } from 'react-bootstrap';
 
-const RoleListComponent = () =>  (
+const ListRoleComponent = () =>  (
   <Grid>
     <Row className="show-grid">
-      <Col xs={12}>
-        <h3 style={{marginBottom: 30}}>Role Management</h3>
-      </Col>
-      <Col xs={12}>
+      <Col sm={12}>
+        <PageHeader>Role Management</PageHeader>
         <Well bsSize="sm">
-           <Button bsStyle="primary">New role</Button>
+           <LinkContainer to="/user/new"><Button bsStyle="primary">New role</Button></LinkContainer>
+           <Button bsStyle="danger" className="pull-right">Delete role</Button>
         </Well>
-      </Col>
-      <Col xs={12}>
         <Table striped bordered condensed hover>
           <thead>
             <tr>
@@ -44,4 +43,4 @@ const RoleListComponent = () =>  (
   </Grid>
 );
 
-export default RoleListComponent;
+export default ListRoleComponent;

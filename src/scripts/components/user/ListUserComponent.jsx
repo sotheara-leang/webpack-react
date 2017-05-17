@@ -1,23 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 import {
   Grid, Row, Col,
   Well,
   Button,
   Table,
+  PageHeader
 } from 'react-bootstrap';
 
-const UserListComponent = () =>  (
+const ListUserComponent = () =>  (
   <Grid>
     <Row className="show-grid">
-      <Col xs={12}>
-        <h3 style={{marginBottom: 30}}>User Management</h3>
-      </Col>
-      <Col xs={12}>
+      <Col sm={12}>
+        <PageHeader>User Management</PageHeader>
         <Well bsSize="sm">
-           <Button bsStyle="primary">New user</Button>
+           <LinkContainer to="/user/new"><Button bsStyle="primary">New user</Button></LinkContainer>
+           <Button bsStyle="danger" className="pull-right">Delete user</Button>
         </Well>
-      </Col>
-      <Col xs={12}>
         <Table striped bordered condensed hover>
           <thead>
             <tr>
@@ -52,4 +52,4 @@ const UserListComponent = () =>  (
   </Grid>
 );
 
-export default UserListComponent;
+export default ListUserComponent;
